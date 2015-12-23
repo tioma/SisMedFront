@@ -1,12 +1,41 @@
 <!DOCTYPE html>
-<html>
-<head lang="en">
+<html ng-app="myapp">
+<head lang="es">
 	<meta charset="UTF-8">
-	<title></title>
+	<title>Probando</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--Bootstrap CSS -->
+	<link rel="stylesheet" href="css/spacelab.css">
+	<link rel="stylesheet" href="css/angucomplete-alt.css">
+	<link rel="stylesheet" href="css/angular-multi-select.css">
+	<link rel="stylesheet" href="css/animation.css">
+	<link rel="stylesheet" href="css/dialogs.css">
+	<link rel="stylesheet" href="css/notificaciones.css">
+	<!-- Angular and bower components -->
+	<script src="bower_components/angular/angular.js"></script>
+	<script src="bower_components/angular-cache/dist/angular-cache.js"></script>
+	<script src="bower_components/angular-cookies/angular-cookies.js"></script>
+	<script src="bower_components/ng-facebook/ngFacebook.js"></script>
+	<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+	<script src="bower_components/angular-socket-io/socket.js"></script>
+	<script src="bower_components/angular-ui-bootstrap-bower/ui-bootstrap.js"></script>
+	<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+	<!-- App files -->
+	<script src="main.js"></script>
+	<script src="controller/login.js"></script>
+	<script src="directive/angucomplete-alt.js"></script>
+	<script src="directive/angular-multi-select.js"></script>
 </head>
 <body>
+
 <div>
 	<span>adsljkdn</span>
 </div>
+
+<div class="row wrapper">
+	<br class="hidden-print"/><br class="hidden-print"/>
+	<div ui-view></div>
+</div>
+
 </body>
 </html>
