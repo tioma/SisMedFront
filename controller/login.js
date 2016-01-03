@@ -4,6 +4,11 @@
 myapp.controller('loginCtrl', ['$scope', '$facebook', function($scope, $facebook){
 
 	$scope.isLoggedIn = false;
+
+	$facebook.getLoginStatus().then(function(result){
+		console.log(result);
+	});
+
 	$scope.login = function() {
 		$facebook.login().then(function() {
 			refresh();
@@ -11,17 +16,19 @@ myapp.controller('loginCtrl', ['$scope', '$facebook', function($scope, $facebook
 	};
 
 	function refresh() {
-		$facebook.api("/me").then(
+		$facebook.api("/me?fields=name,email").then(
 				function(response) {
-					$scope.welcomeMsg = "Welcome " + response.name;
+					console.log(response);
+					//$scope.welcomeMsg = "Welcome " + response.name;
 					$scope.isLoggedIn = true;
 				},
 				function(err) {
+					console.log(err);
 					$scope.welcomeMsg = "Please log in";
 				});
 		console.log($scope.welcomeMsg);
 	}
 
-	refresh();
+	//refresh();
 
 }]);

@@ -11,8 +11,12 @@
 	<link rel="stylesheet" href="css/animation.css">
 	<link rel="stylesheet" href="css/dialogs.css">
 	<link rel="stylesheet" href="css/notificaciones.css">
+	<link rel="stylesheet" href="css/gmaps.css">
 	<!-- Angular and bower components -->
+	<script src="bower_components/lodash/lodash.js"></script>
 	<script src="bower_components/angular/angular.js"></script>
+	<script src="bower_components/angular-simple-logger/dist/angular-simple-logger.js"></script>
+	<script src="bower_components/angular-google-maps/dist/angular-google-maps.js"></script>
 	<script src="bower_components/angular-cache/dist/angular-cache.js"></script>
 	<script src="bower_components/angular-cookies/angular-cookies.js"></script>
 	<script src="bower_components/ng-facebook/ngFacebook.js"></script>
@@ -20,19 +24,43 @@
 	<script src="bower_components/angular-socket-io/socket.js"></script>
 	<script src="bower_components/angular-ui-bootstrap-bower/ui-bootstrap.js"></script>
 	<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+	<script src="bower_components/ngGeolocation/ngGeolocation.js"></script>
 	<!-- App files -->
 	<script src="main.js"></script>
 	<script src="controller/login.js"></script>
+	<script src="controller/mainSearch.js"></script>
 	<script src="directive/angucomplete-alt.js"></script>
 	<script src="directive/angular-multi-select.js"></script>
 </head>
-<body>
+<body class="container">
 
-<div>
-	<span>adsljkdn</span>
+<div class="navbar navbar-default navbar-fixed-top">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<span class="navbar-brand">Obi-Wan</span>
+		</div>
+		<div class="collapse navbar-collapse">
+			<form class="navbar-form navbar-left" role="search">
+				<div class="form-group">
+					<input type="text" class="form-control" placeholder="Búsqueda">
+				</div>
+				<button type="submit" class="btn btn-default">Buscar</button>
+			</form>
+			<ul class="nav navbar-nav navbar-right">
+				<li dropdown>
+					<a href data-toggle="dropdown" dropdown-toggle><span class="glyphicon glyphicon-user"></span> Usuario <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a>Perfil</a></li>
+						<li class="divider"></li>
+						<li><a><span class="glyphicon glyphicon-log-out"></span> Salir</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
 </div>
 
-<div class="row wrapper">
+<div class="container wrapper">
 	<br class="hidden-print"/><br class="hidden-print"/>
 	<div ui-view></div>
 </div>
