@@ -52,8 +52,4 @@ myapp.controller('mainSearchCtrl', ['$scope', 'uiGmapGoogleMapApi', '$geolocatio
 
 	});
 
-	uiGmapGoogleMapApi.then(function(maps) {
-
-	});
-
 }]);
