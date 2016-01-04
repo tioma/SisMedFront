@@ -4,7 +4,7 @@
 
 myapp.controller('mainSearchCtrl', ['$scope', 'uiGmapGoogleMapApi', '$geolocation', function($scope, uiGmapGoogleMapApi, $geolocation){
 
-	$geolocation.getCurrentPosition({ timeout: 60000}).then(function(position){
+	$geolocation.getCurrentPosition({ timeout: 60000, enableHighAccuracy: true}).then(function(position){
 		console.log(position);
 
 		$scope.map = {
@@ -26,8 +26,18 @@ myapp.controller('mainSearchCtrl', ['$scope', 'uiGmapGoogleMapApi', '$geolocatio
 		};
 	});
 
+	$geolocation.watchPosition({
+		timeout: 5,
+		maximumAge: 250,
+		enableHighAccuracy: true
+	});
+
+	$scope.$on('$geolocation.position.changed', function(ev, data){
+		console.log(data);
+	});
+
 	// To be set by previous step
-	$scope.chosenTown = "Roma";
+	/*$scope.chosenTown = "Roma";
 
 	// geocode the given address
 	var geocodeAddress = function(address, callback) {
@@ -39,16 +49,15 @@ myapp.controller('mainSearchCtrl', ['$scope', 'uiGmapGoogleMapApi', '$geolocatio
 				console.log("Geocode was not successful for the following reason: " + status);
 			}
 		});
-	};
+	};*/
 
 	// google maps is ready
 	uiGmapGoogleMapApi.then(function(maps) {
 		// geocode chosen town
-		geocodeAddress($scope.chosenTown, function(latLng){
-			console.log("1  " + latLng.lat());
-			console.log("2  " + latLng.lng());
+		/*geocodeAddress($scope.chosenTown, function(latLng){
+			console.log(latLng);
 			//$scope.map = { center: { latitude: latLng.lat(), longitude: latLng.lng() }, zoom: 12, bounds: {}};
-		});
+		});*/
 
 	});
 
