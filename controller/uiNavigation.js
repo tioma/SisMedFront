@@ -10,6 +10,7 @@ myapp.controller('uiNavigationCtrl', ['$scope', '$facebook', function($scope, $f
 		$scope.isLoggedIn = false;
 	};
 
+	//Provisorio-- en realidad la integracion de fb solo se veria en el login, creando un user en la app, para luego usar ese id
 	$facebook.getLoginStatus().then(function(result){
 		console.log(result);
 		if (result.status === 'connected'){

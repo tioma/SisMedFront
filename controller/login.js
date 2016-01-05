@@ -1,7 +1,7 @@
 /**
  * Created by Artiom on 21/12/2015.
  */
-myapp.controller('loginCtrl', ['$scope', '$facebook', function($scope, $facebook){
+myapp.controller('loginCtrl', ['$scope', '$state', '$facebook', function($scope, $state, $facebook){
 
 	$scope.isLoggedIn = false;
 
@@ -10,24 +10,29 @@ myapp.controller('loginCtrl', ['$scope', '$facebook', function($scope, $facebook
 	});
 
 	$scope.login = function() {
-		$facebook.login().then(function() {
-			refresh();
+		$facebook.login().then(function(result) {
+			console.log(result);
+			if (result.status === 'connected'){
+				//conectado en fb y en la app
+				$facebook.api("/me?fields=name,email,picture").then(
+						function(userData) {
+							$scope.user = userData;
+							console.log(userData);
+							//$scope.welcomeMsg = "Welcome " + response.name;
+							$scope.isLoggedIn = true;
+							$state.transitionTo('main');
+						},
+						function(err) {
+							console.log(err);
+							//$scope.welcomeMsg = "Please log in";
+						});
+			} else if (result.status === 'not_authorized'){
+				//conectado en fb pero no en la app
+			} else { //status = 'unknown'
+				//no está conectado en fb así que no se sabe
+			}
 		});
 	};
-
-	function refresh() {
-		$facebook.api("/me?fields=name,email").then(
-				function(response) {
-					console.log(response);
-					//$scope.welcomeMsg = "Welcome " + response.name;
-					$scope.isLoggedIn = true;
-				},
-				function(err) {
-					console.log(err);
-					$scope.welcomeMsg = "Please log in";
-				});
-		console.log($scope.welcomeMsg);
-	}
 
 	//refresh();
 
