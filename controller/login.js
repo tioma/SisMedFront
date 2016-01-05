@@ -14,7 +14,7 @@ myapp.controller('loginCtrl', ['$scope', '$state', '$facebook', function($scope,
 			console.log(result);
 			if (result.status === 'connected'){
 				//conectado en fb y en la app
-				$facebook.api("/me?fields=name,email,picture").then(
+				$facebook.api("/me?fields=first_name,last_name,email,picture").then(
 						function(userData) {
 							$scope.user = userData;
 							console.log(userData);
